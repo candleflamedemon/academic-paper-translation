@@ -1,0 +1,7 @@
+interface:
+  display_name: "英文文献翻译"
+  short_description: "完整生成中译版与中英对照版，并归档英文原版和校验图表公式"
+  default_prompt: "Use $academic-paper-translation to translate this English academic paper into complete Chinese and bilingual editions and archive the unchanged original."
+
+policy:
+  allow_implicit_invocation: true

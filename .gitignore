@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*.swo
+~$*
+
+# Python cache and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Generated translation outputs
+*.docx
+*.pdf
+verification_report.json
