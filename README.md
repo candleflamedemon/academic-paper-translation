@@ -36,6 +36,7 @@ academic-paper-translation/
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── references/completeness-checklist.md
+├── references/local-artifact-versioning.md
 └── scripts/verify_translation_package.py
 ```
 
@@ -55,7 +56,7 @@ Use $academic-paper-translation to translate this English academic paper into co
 2. 中英对照版 `.docx`
 3. 与源文件字节一致的英文 PDF 副本
 
-如果需要将结果保存为本地成果，应同时遵守 `$save-task-artifacts`：在当前项目的 `任务成果` 目录下创建新的、不覆盖旧版本的版本子目录，并把本次交付物放入其中。
+如果需要将结果保存为本地成果，应遵守本技能内置的 `references/local-artifact-versioning.md`：在当前项目的 `任务成果` 目录下创建新的、不覆盖旧版本的版本子目录，并把本次交付物放入其中。
 
 ### 推荐工作流程
 

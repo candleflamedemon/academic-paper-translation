@@ -15,7 +15,7 @@ Unless the user requests a different package, create:
 2. An English-Chinese bilingual `.docx`, keeping each English unit adjacent to its Chinese translation.
 3. An unchanged copy of the English source PDF.
 
-When local artifacts are required, use `$save-task-artifacts` and place all deliverables in one new, non-overwriting version directory. Preserve the source and every prior version.
+When local artifacts are required, read [references/local-artifact-versioning.md](references/local-artifact-versioning.md) and place all deliverables in one new, non-overwriting version directory under the current project's `任务成果` folder. Preserve the source and every prior version.
 
 ## Workflow
 
