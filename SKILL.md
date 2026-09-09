@@ -1,11 +1,25 @@
 ---
 name: academic-paper-translation
-description: Translate English academic papers into complete Chinese and English-Chinese bilingual editions, preserve figures, tables, equations, citations, and archive the unchanged English original. Use for PDF-to-DOCX academic translation deliverables; do not use for short excerpts or ordinary non-academic prose.
+description: Translate English academic papers in a user-selected fine or fast mode, create Chinese and English-Chinese DOCX editions, preserve academic content, and archive the unchanged English PDF. Use for full-paper PDF translation deliverables; do not use for short excerpts or ordinary non-academic prose.
 ---
 
 # Academic Paper Translation
 
-Produce publication-ready academic translations without losing source content or visual information.
+Produce complete academic-paper translations at the quality and speed the user chooses.
+
+## Required preflight
+
+Before translating, read [references/translation-modes.md](references/translation-modes.md) and perform only its lightweight preflight. Do not begin full extraction, page-by-page rendering, translation, or DOCX authoring yet.
+
+Give the user a broad completion-time estimate for both modes in the user's language. Base it on the paper's page count and sampled complexity, the current operating system and readily available CPU/memory information, and the selected model/reasoning level when visible. If model or device details are unavailable, say so and use the typical range. Present the estimate briefly as a range, not a promise.
+
+Then ask the user to choose:
+
+- **A. Fine translation** - slower and higher token use, but more polished and fully checked; recommend it for core references.
+- **B. Fast translation** - faster and lower token use, with plain black-and-white formatting and an adequate exploratory translation; recommend it for literature screening.
+- **C. Custom** - let the user specify deliverables, formatting, or quality/latency priorities.
+
+Do not continue until the user chooses a mode. If they select Custom, confirm only the missing requirements that materially affect the work.
 
 ## Default deliverables
 
@@ -17,21 +31,21 @@ Unless the user requests a different package, create:
 
 When local artifacts are required, read [references/local-artifact-versioning.md](references/local-artifact-versioning.md) and place all deliverables in one new, non-overwriting version directory under the current project's `任务成果` folder. Preserve the source and every prior version.
 
-## Workflow
+## Shared workflow
 
-1. Use the PDF skill to extract text and render every source page. Build a source inventory before translating: page count, headings, figures, tables, equations, captions, footnotes, references, acknowledgements, declarations, appendices, and supplementary-data notices.
-2. Read [references/completeness-checklist.md](references/completeness-checklist.md) and maintain a one-to-one coverage ledger. Do not treat text extraction alone as proof of completeness.
-3. Translate faithfully. Preserve numbers, units, statistical symbols, sample sizes, uncertainty, qualifications, in-text citations, and reference entries. Standardize recurring technical terms and abbreviations; on first occurrence, give the Chinese term followed by the English name or abbreviation when helpful.
-4. Reconstruct the two Word editions with the documents skill. Use native Word tables and equations where practical. Keep figure and table captions adjacent to their objects.
-5. For every figure, prefer direct embedded-image extraction. If the figure is composed of PDF vectors or multiple objects, render the source page at 300 DPI or higher and crop the complete figure bounding box with a safety margin. Include every panel, axis, tick label, legend, scale bar, compass, border, and panel identifier. Never crop from thumbnails or contact sheets, and never stretch a figure to a different aspect ratio; pad with whitespace or adjust the layout instead.
-6. Render both final DOCX files to page images. Inspect every page at full size, with special attention to figures, long tables, equations, page breaks, captions, and glyphs. Iterate until no clipping, overlap, missing content, or distorted image remains.
-7. Run `scripts/verify_translation_package.py` with expected counts from the coverage ledger. Hash-check the archived English PDF against the source. A successful script result supplements, but does not replace, visual inspection.
+1. Follow the selected mode in [references/translation-modes.md](references/translation-modes.md).
+2. Use the PDF skill to extract text and render source pages as required by that mode. Do not treat text extraction alone as proof of completeness.
+3. Translate faithfully. Preserve numbers, units, statistical symbols, sample sizes, uncertainty, qualifications, in-text citations, and reference entries. Keep recurring technical terms and abbreviations consistent.
+4. Reconstruct the two Word editions with the documents skill. Keep figure and table captions adjacent to their objects, and use native Word tables and equations where practical.
+5. Preserve every figure without changing its aspect ratio. Prefer direct embedded-image extraction; for vectors or multi-object figures, render and crop the complete figure with a safety margin rather than using thumbnails or contact sheets.
+6. Render both final DOCX files to page images and inspect every page. Fine mode includes content and visual-polish iteration; fast mode limits iteration to missing content, clipping, overlap, distorted images, unreadable glyphs, and other defects that block reliable reading.
+7. Run `scripts/verify_translation_package.py` with the counts collected for the selected mode. Hash-check the archived English PDF against the source. Script results supplement, but do not replace, visual inspection.
 
-## Acceptance criteria
+## Shared acceptance criteria
 
-- Source inventory and translated content match one-to-one.
-- All figures and panels are readable and uncropped.
 - All tables, equations, captions, citations, references, and end matter are present.
 - Chinese and bilingual editions contain the same substantive content.
 - The archived English PDF is byte-identical to the supplied source.
 - Final DOCX renders have no visible defects.
+- Fine mode additionally meets the one-to-one coverage and publication-ready criteria in [references/completeness-checklist.md](references/completeness-checklist.md).
+- Fast mode remains a plain exploratory edition: it must be complete and readable, but it need not reproduce the journal's visual design or receive a separate stylistic-polish pass.
