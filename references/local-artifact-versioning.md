@@ -23,6 +23,24 @@ Use this format:
 - `版本更新简介`: a short, specific Chinese summary of what this version adds or changes. Do not leave it blank or use vague labels such as only `更新`, `优化`, or `修改`.
 - `codex`: fixed suffix.
 
+## Deliverable File Naming
+
+Before writing the translation package, identify the English paper title displayed in the paper itself and translate it faithfully into natural Chinese. If embedded PDF metadata conflicts with the displayed title, prefer the displayed title. Use the resulting `中文标题译文` as the shared filename stem for the package:
+
+```text
+<中文标题译文>_中文译文版.docx
+<中文标题译文>_中英对照版.docx
+<中文标题译文>_英文原文.pdf
+<中文标题译文>_校验报告.json   # only when a report is generated
+```
+
+- Use a title translation, not a topic summary or an invented replacement title.
+- Remove control characters and replace filename-illegal characters such as `< > : " / \\ | ? *` with natural Chinese punctuation, a space, or a hyphen. Collapse repeated whitespace and trim trailing spaces and periods.
+- Prefer the complete translated title. If the title exceeds 80 characters or the absolute output path risks the platform path limit, shorten it to a clear, distinctive 40–60-character Chinese title while preserving the paper's main subject and differentiating terms. Use the same shortened stem for every file in the package.
+- Keep the edition suffixes exactly as shown so files remain distinguishable in search results and file explorers.
+- An explicit user-supplied filename or naming scheme takes precedence. Otherwise, generic names such as `chinese.docx`, `bilingual.docx`, and `original_copy.pdf` are not acceptable defaults.
+- Renaming the archived PDF is allowed because its byte content remains unchanged; the later hash check must still match it to the source PDF.
+
 ## Non-Overwrite Rules
 
 - Check the full target path before creating the version folder.
