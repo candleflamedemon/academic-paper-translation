@@ -19,7 +19,7 @@
 - 生成中文单语 `.docx`：包含英文论文的完整中文译文。
 - 生成中英双语 `.docx`：英文内容与对应中文翻译相邻排列，便于对照阅读。
 - 归档英文原始 PDF：保存一份不修改内容的英文 PDF 副本。
-- 以中文标题译文命名结果：默认让中文版、中英对照版和英文原文副本共用同一个经过文件名清理的中文论文标题，便于后续搜索和归档。
+- 以中文标题译文和发布年份命名结果：默认让中文版、中英对照版和英文原文副本共用 `中文标题译文_发布年份`，并按篇放进同名文件夹，便于批量翻译后的搜索和归档。
 - 建立源文件清单：记录页数、标题、作者、摘要、关键词、章节标题、图、表、公式、题注、脚注、参考文献、致谢、声明、附录和补充材料提示等。
 - 维护一对一覆盖核对：按照 `references/completeness-checklist.md` 检查源文件内容是否都进入两个目标 Word 文档。
 - 保留学术细节：要求保留数字、单位、统计符号、样本量、不确定性、限定条件、文内引用和参考文献条目。
@@ -68,7 +68,7 @@ Use $academic-paper-translation to estimate the time, ask me to choose fine or f
 2. 中英对照版 `.docx`
 3. 与源文件字节一致的英文 PDF 副本
 
-如果需要将结果保存为本地成果，应遵守本技能内置的 `references/local-artifact-versioning.md`：在当前项目的 `任务成果` 目录下创建新的、不覆盖旧版本的版本子目录，并把本次交付物放入其中。
+如果需要将结果保存为本地成果，应遵守本技能内置的 `references/local-artifact-versioning.md`：在当前项目的 `任务成果` 目录下创建新的、不覆盖旧版本的版本子目录，再按每篇论文建立 `中文标题译文_发布年份` 文件夹，集中存放该篇的交付物。
 
 ### 推荐工作流程
 
@@ -123,13 +123,14 @@ C. 自定义
 ```text
 任务成果/
 └── 学术论文翻译_yyyyMMddHHmm_001_初版完整翻译_codex/
-    ├── 中文标题译文_中文译文版.docx
-    ├── 中文标题译文_中英对照版.docx
-    ├── 中文标题译文_英文原文.pdf
-    └── 中文标题译文_校验报告.json
+    └── 中文标题译文_发布年份/
+        ├── 中文标题译文_发布年份_中文译文版.docx
+        ├── 中文标题译文_发布年份_中英对照版.docx
+        ├── 中文标题译文_发布年份_英文原文.pdf
+        └── 中文标题译文_发布年份_校验报告.json
 ```
 
-除非用户明确指定其他命名方案，实际文件名必须包含论文的中文标题译文，并使用上述版本后缀。标题过长或含非法字符时，按 `references/local-artifact-versioning.md` 缩写和清理。默认交付类型保持为中文 Word 文档、中英对照 Word 文档和英文原 PDF 副本。校验报告只有在运行校验脚本并指定 `--report` 时才会生成。
+除非用户明确指定其他命名方案，文件夹及实际文件名都必须包含论文的中文标题译文和四位发布年份，并使用上述版本后缀。批量翻译时，每篇论文各占一个同名文件夹。年份应根据论文的引用信息或出版方记录确定，不能用 PDF 创建或下载年份代替；无法核实时需向用户确认。标题过长或含非法字符时，按 `references/local-artifact-versioning.md` 缩写和清理。默认交付类型保持为中文 Word 文档、中英对照 Word 文档和英文原 PDF 副本。校验报告只有在运行校验脚本并指定 `--report` 时才会生成。
 
 ## 真实能力边界
 
@@ -163,7 +164,7 @@ This skill provides two complete-paper workflows for different goals. Fine mode 
 - Create a Chinese-only `.docx` containing the complete Chinese translation of the English paper.
 - Create an English-Chinese bilingual `.docx` with each English unit kept adjacent to its Chinese translation for comparison.
 - Archive the original English PDF by saving an unchanged copy.
-- Name the package from the translated Chinese paper title so the Chinese edition, bilingual edition, and archived source share a searchable, sanitized title stem.
+- Name the package from the translated Chinese paper title and publication year, and keep each paper's editions and archived source in a matching paper folder.
 - Build a source inventory covering page count, title, authors, abstract, keywords, section headings, figures, tables, equations, captions, footnotes, references, acknowledgements, declarations, appendices, and supplementary-data notices.
 - Maintain one-to-one coverage checks using `references/completeness-checklist.md`.
 - Preserve academic details such as numbers, units, statistical symbols, sample sizes, uncertainty, qualifications, in-text citations, and reference entries.
@@ -212,7 +213,7 @@ Default deliverables:
 2. English-Chinese bilingual `.docx`
 3. Byte-identical copy of the original English PDF
 
-If local artifacts need to be saved, follow the built-in `references/local-artifact-versioning.md` rules: create a new non-overwriting version folder under the current project's `任务成果` directory and place the deliverables there.
+If local artifacts need to be saved, follow the built-in `references/local-artifact-versioning.md` rules: create a new non-overwriting version folder under the current project's `任务成果` directory, then place each paper's deliverables in its own `<translated-Chinese-title>_<publication-year>` folder.
 
 ### Recommended Workflow
 
@@ -267,13 +268,14 @@ These times only demonstrate the output format. The actual estimate changes with
 ```text
 任务成果/
 └── 学术论文翻译_yyyyMMddHHmm_001_初版完整翻译_codex/
-    ├── translated-Chinese-title_中文译文版.docx
-    ├── translated-Chinese-title_中英对照版.docx
-    ├── translated-Chinese-title_英文原文.pdf
-    └── translated-Chinese-title_校验报告.json
+    └── translated-Chinese-title_publication-year/
+        ├── translated-Chinese-title_publication-year_中文译文版.docx
+        ├── translated-Chinese-title_publication-year_中英对照版.docx
+        ├── translated-Chinese-title_publication-year_英文原文.pdf
+        └── translated-Chinese-title_publication-year_校验报告.json
 ```
 
-Unless the user explicitly requests another naming scheme, every deliverable filename must include the translated Chinese paper title and the edition suffix shown above. Sanitize or meaningfully shorten unsafe or excessively long titles according to `references/local-artifact-versioning.md`. The default deliverable types remain a Chinese Word document, an English-Chinese bilingual Word document, and the original English PDF copy. The verification report is created only when the verification script is run with `--report`.
+Unless the user explicitly requests another naming scheme, each paper folder and deliverable filename must include the translated Chinese paper title and four-digit publication year; filenames also use the edition suffixes shown above. For batch work, keep each paper in a separate matching folder. Determine the year from the paper's citation or publisher record, never the PDF creation or download date; ask the user if it cannot be verified. Sanitize or meaningfully shorten unsafe or excessively long titles according to `references/local-artifact-versioning.md`. The default deliverable types remain a Chinese Word document, an English-Chinese bilingual Word document, and the original English PDF copy. The verification report is created only when the verification script is run with `--report`.
 
 ## Real Limitations
 

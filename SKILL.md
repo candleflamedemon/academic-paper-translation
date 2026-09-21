@@ -25,13 +25,13 @@ Do not continue until the user chooses a mode. If they select Custom, confirm on
 
 Unless the user requests a different package, create:
 
-1. `<translated-Chinese-title>_中文译文版.docx`.
-2. `<translated-Chinese-title>_中英对照版.docx`, keeping each English unit adjacent to its Chinese translation.
-3. `<translated-Chinese-title>_英文原文.pdf`, as an unchanged copy of the English source PDF.
+1. `<translated-Chinese-title>_<publication-year>_中文译文版.docx`.
+2. `<translated-Chinese-title>_<publication-year>_中英对照版.docx`, keeping each English unit adjacent to its Chinese translation.
+3. `<translated-Chinese-title>_<publication-year>_英文原文.pdf`, as an unchanged copy of the English source PDF.
 
-Before creating deliverables, translate the paper's displayed English title faithfully into Chinese and use that Chinese title as the shared filename stem. Do not fall back to generic names such as `chinese.docx`, `bilingual.docx`, or `original_copy.pdf` unless the user explicitly requests them. Follow the sanitization, shortening, and override rules in [references/local-artifact-versioning.md](references/local-artifact-versioning.md).
+Before creating deliverables, translate the paper's displayed English title faithfully into Chinese and identify its publication year. Use `<translated-Chinese-title>_<publication-year>` as the shared folder and filename stem. Do not fall back to generic names such as `chinese.docx`, `bilingual.docx`, or `original_copy.pdf` unless the user explicitly requests them. Follow the year-selection, sanitization, shortening, and override rules in [references/local-artifact-versioning.md](references/local-artifact-versioning.md).
 
-When local artifacts are required, read [references/local-artifact-versioning.md](references/local-artifact-versioning.md) and place all deliverables in one new, non-overwriting version directory under the current project's `任务成果` folder. Preserve the source and every prior version.
+When local artifacts are required, read [references/local-artifact-versioning.md](references/local-artifact-versioning.md). Under a new, non-overwriting version directory in the current project's `任务成果` folder, create one `<translated-Chinese-title>_<publication-year>` folder per paper and put all of that paper's deliverables and generated reports inside it. Preserve the source and every prior version.
 
 ## Shared workflow
 
@@ -48,7 +48,7 @@ When local artifacts are required, read [references/local-artifact-versioning.md
 - All tables, equations, captions, citations, references, and end matter are present.
 - Chinese and bilingual editions contain the same substantive content.
 - The archived English PDF is byte-identical to the supplied source.
-- Default deliverable filenames share the sanitized Chinese title translation and use the correct edition suffix; user-specified filenames take precedence.
+- Default deliverable filenames share the sanitized Chinese title translation and publication year, use the correct edition suffix, and sit together in the matching paper folder; user-specified naming takes precedence.
 - Final DOCX renders have no visible defects.
 - Fine mode additionally meets the one-to-one coverage and publication-ready criteria in [references/completeness-checklist.md](references/completeness-checklist.md).
 - Fast mode remains a plain exploratory edition: it must be complete and readable, but it need not reproduce the journal's visual design or receive a separate stylistic-polish pass.
